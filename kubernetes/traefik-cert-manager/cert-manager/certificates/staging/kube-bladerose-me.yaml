@@ -2,14 +2,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local-example-com
+  name: kube-bladerose-me
   namespace: default
 spec:
-  secretName: local-example-com-staging-tls
+  secretName: kube-bladerose-me-staging-tls
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: "*.local.example.com"
+  commonName: "*.kube.bladerose.me"
   dnsNames:
-  - "local.example.com"
-  - "*.local.example.com"
+  - "kube.bladerose.me"
+  - "*.kube.bladerose.me"

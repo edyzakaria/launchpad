@@ -9,13 +9,14 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.local.example.com`)
+    - match: Host(`traefik.kube.bladerose.me`)
       kind: Rule
-      middlewares:
-        - name: traefik-dashboard-basicauth
-          namespace: traefik
+      # I dont want to apply middleware.
+      # middlewares:
+      #   - name: traefik-dashboard-basicauth
+      #     namespace: traefik
       services:
         - name: api@internal
           kind: TraefikService
-#  tls:
-#    secretName: local-example-com-staging-tls
+  tls:
+    secretName: kube-bladerose-me-staging-tls
