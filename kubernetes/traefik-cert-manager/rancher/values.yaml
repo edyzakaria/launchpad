@@ -1,0 +1,7 @@
+bootstrapPassword: admin
+hostname: rancher.kube.bladerose.me
+ingress:
+  tls:
+    source: secret
+  extraAnnotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging

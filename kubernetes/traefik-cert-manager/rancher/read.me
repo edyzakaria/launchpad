@@ -1,0 +1,8 @@
+This values.yaml is overiding the use of self signed rancher issuer.
+The requirement is we need to ensure cert-manager already deployed with minimum 1 clusterIssuer.
+Currently i use staging, but later when playing time is done i will change the values.yaml to use production.
+The syntax to upgrase is using helm since i deploy rancher using helm.
+
+helm upgrade rancher rancher-latest/rancher \
+  --namespace cattle-system \
+  -f values.yaml 
