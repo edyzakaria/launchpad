@@ -1,7 +1,22 @@
 bootstrapPassword: admin
 hostname: rancher.kube.bladerose.me
+
+rancher:
+  additionalCerts:
+    - name: tls-rancher
+      secretName: tls-rancher
+    - name: tls-rancher-internal
+      secretName: tls-rancher-internal
+    - name: tls-rancher-internal-ca
+      secretName: tls-rancher-internal-ca
+
+privateCA: false # Disable Rancher's self-signed CA generation
+
 ingress:
   tls:
-    source: secret
-  extraAnnotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    source: secret # Ensure Rancher's ingress uses Kubernetes secrets for TLS certificates
+
+extraAnnotations:
+  cert-manager.io/cluster-issuer: letsencrypt-staging # Reference your ClusterIssuer globally (optional)
+
+

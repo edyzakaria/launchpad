@@ -6,3 +6,22 @@ The syntax to upgrase is using helm since i deploy rancher using helm.
 helm upgrade rancher rancher-latest/rancher \
   --namespace cattle-system \
   -f values.yaml 
+
+
+
+
+Trying to reinstall after cert issue:
+helm install rancher rancher-latest/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.kube.bladerose.me \ # Replace with your Rancher's domain name
+  --set ingress.tls.source=secret \
+  --set ingress.extraAnnotations."cert-manager\.io/cluster-issuer"=letsencrypt-staging \
+  --set privateCA=false \
+  --set replicas=3 # For high availability (optional)
+
+Trying reinstall use cert from files based on the official website:
+helm install rancher rancher-<CHART_REPO>/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.my.org \
+  --set bootstrapPassword=admin \
+  --set ingress.tls.source=secret

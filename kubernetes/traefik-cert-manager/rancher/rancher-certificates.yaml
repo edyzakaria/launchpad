@@ -1,0 +1,51 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-rancher
+  namespace: cattle-system
+spec:
+  secretName: tls-rancher # Secret used by Rancher's ingress
+  issuerRef:
+    name: letsencrypt-staging # Replace with your ClusterIssuer name
+    kind: ClusterIssuer
+  dnsNames:
+    - rancher.kube.bladerose.me # Replace with your Rancher's domain
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-rancher-ingress
+  namespace: cattle-system
+spec:
+  secretName: tls-rancher-ingress # Secret used by Rancher's ingress
+  issuerRef:
+    name: letsencrypt-staging # Replace with your ClusterIssuer name
+    kind: ClusterIssuer
+  dnsNames:
+    - rancher.kube.bladerose.me # Replace with your Rancher's domain
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-rancher-internal
+  namespace: cattle-system
+spec:
+  secretName: tls-rancher-internal # Secret for internal communication
+  issuerRef:
+    name: letsencrypt-staging # Replace with your ClusterIssuer name
+    kind: ClusterIssuer
+  dnsNames:
+    - rancher-internal.kube.bladerose.me # Replace with an internal domain or subdomain
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-rancher-internal-ca
+  namespace: cattle-system
+spec:
+  secretName: tls-rancher-internal-ca # Secret for internal CA purposes (if needed)
+  issuerRef:
+    name: letsencrypt-staging # Replace with your ClusterIssuer name
+    kind: ClusterIssuer
+  dnsNames:
+    - rancher-ca.kube.bladerose.me # Replace with an appropriate domain for CA purposes
