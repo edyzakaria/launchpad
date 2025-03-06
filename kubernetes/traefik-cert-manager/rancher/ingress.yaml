@@ -15,7 +15,5 @@ spec:
       services:
         - name: rancher # Name of the Rancher service created by Helm
           port: 443      # Rancher's HTTPS port (self-signed cert)
-  # tls:
-  #   certResolver: le # Use the Let's Encrypt resolver configured in Traefik
   tls:
     secretName: kube-bladerose-me-tls
