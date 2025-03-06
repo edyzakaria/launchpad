@@ -11,12 +11,12 @@ spec:
   routes:
     - match: Host(`traefik.kube.bladerose.me`)
       kind: Rule
-      # I dont want to apply middleware.
-      # middlewares:
-      #   - name: traefik-dashboard-basicauth
-      #     namespace: traefik
+      # If I dont want to apply middleware.
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
       services:
         - name: api@internal
           kind: TraefikService
-  tls:
-    secretName: kube-bladerose-me-staging-tls
+  # tls:
+  #   secretName: kube-bladerose-me-staging-tls
