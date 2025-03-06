@@ -18,5 +18,5 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
-  tls:
-    secretName: kube-bladerose-me-tls
+  # tls:
+  #   secretName: kube-bladerose-me-tls
