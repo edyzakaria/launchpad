@@ -63,3 +63,4 @@ kubeconfig*
 talosconfig*
 *.pub
 *.key
+*.pem
