@@ -23,4 +23,5 @@ spec:
       middlewares:
         - name: default-headers
   tls:
-    secretName: kube-bladerose-me-staging-tls
+    secretName: kube-bladerose-me-tls
+    # secretName: kube-bladerose-me-staging-tls

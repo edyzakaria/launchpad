@@ -1,22 +1,24 @@
+---
 bootstrapPassword: admin
 hostname: rancher.kube.bladerose.me
-
-rancher:
-  additionalCerts:
-    - name: tls-rancher
-      secretName: tls-rancher
-    - name: tls-rancher-internal
-      secretName: tls-rancher-internal
-    - name: tls-rancher-internal-ca
-      secretName: tls-rancher-internal-ca
-
-privateCA: false # Disable Rancher's self-signed CA generation
-
 ingress:
+  enabled: true
+  ingressClassName: traefik
   tls:
-    source: secret # Ensure Rancher's ingress uses Kubernetes secrets for TLS certificates
+    source: secret
+  extraAnnotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production # Replace with your ClusterIssuer name if different
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  extraHosts:
+    - host: rancher.kube.bladerose.me
+      paths:
+        - path: /
+          pathType: Prefix
 
-extraAnnotations:
-  cert-manager.io/cluster-issuer: letsencrypt-staging # Reference your ClusterIssuer globally (optional)
-
-
+#####
+hostname: rancher.local.myhome.me
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  tls:
+    source: none # Disables Rancher's internal TLS management

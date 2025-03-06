@@ -1,27 +1,8 @@
-This values.yaml is overiding the use of self signed rancher issuer.
-The requirement is we need to ensure cert-manager already deployed with minimum 1 clusterIssuer.
-Currently i use staging, but later when playing time is done i will change the values.yaml to use production.
-The syntax to upgrase is using helm since i deploy rancher using helm.
+Running rancher without using values.yaml.
+I purposely want to use rancher self signed cert. 
 
-helm upgrade rancher rancher-latest/rancher \
-  --namespace cattle-system \
-  -f values.yaml 
-
-
-
-
-Trying to reinstall after cert issue:
+Testing.
 helm install rancher rancher-latest/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.kube.bladerose.me \ # Replace with your Rancher's domain name
-  --set ingress.tls.source=secret \
-  --set ingress.extraAnnotations."cert-manager\.io/cluster-issuer"=letsencrypt-staging \
-  --set privateCA=false \
-  --set replicas=3 # For high availability (optional)
-
-Trying reinstall use cert from files based on the official website:
-helm install rancher rancher-<CHART_REPO>/rancher \
-  --namespace cattle-system \
-  --set hostname=rancher.my.org \
-  --set bootstrapPassword=admin \
-  --set ingress.tls.source=secret
+  --set hostname=rancher.local.myhome.me \
+  --set ingress.tls.source=rancher
