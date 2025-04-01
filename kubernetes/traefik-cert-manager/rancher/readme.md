@@ -5,4 +5,5 @@ Testing.
 helm install rancher rancher-latest/rancher \
   --namespace cattle-system \
   --set hostname=rancher.kube.bladerose.me \
-  --set ingress.tls.source=rancher
+  --set ingress.tls.source=rancher \
+  --set bootstrapPassword=admin
